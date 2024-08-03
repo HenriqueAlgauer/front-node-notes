@@ -8,7 +8,7 @@ export function Details() {
       <h1>Hello World</h1>
       <p>Henrique Machado Algauer</p>
       <span>Vulgo `Piá`</span>
-      <Button />
+      <Button title="Voltar" />
     </Container>
   );
 }
