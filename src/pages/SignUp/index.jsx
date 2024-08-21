@@ -6,7 +6,7 @@ import { api } from "../../services/api";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Container, Form, Background } from "./styles";
 
@@ -14,6 +14,8 @@ export function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   function handleSignUp() {
     if (!name || !email || !password) {
@@ -23,6 +25,7 @@ export function SignUp() {
       .post("/users", { name, email, password })
       .then(() => {
         alert("Usuário cadastrado com sucesso");
+        navigate("/");
       })
       .catch((error) => {
         if (error.response) {
