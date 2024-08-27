@@ -25,9 +25,16 @@ function AuthProvider({ children }) {
       }
     }
   }
+
+  function signOut() {
+    localStorage.removeItem("@user");
+    localStorage.removeItem("@token");
+
+    setData({});
+  }
   useEffect(() => {
-    const user = localStorage.setItem("@user");
-    const token = localStorage.setItem("@token");
+    const user = localStorage.getItem("@user");
+    const token = localStorage.getItem("@token");
 
     if (token && user) {
       api.defaults.headers.authorization = `Bearer ${token}`;
@@ -39,7 +46,7 @@ function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signIn, user: data.user }}>
+    <AuthContext.Provider value={{ signIn, user: data.user, signOut }}>
       {children}
     </AuthContext.Provider>
   );
