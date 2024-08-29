@@ -19,7 +19,7 @@ export function Header() {
 
         <div>
           <span>Bem Vindo!</span>
-          <strong>Henrique Machado</strong>
+          <strong>{user.name}</strong>
         </div>
       </Profile>
 
