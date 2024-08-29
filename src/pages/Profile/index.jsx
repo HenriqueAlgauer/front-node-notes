@@ -4,6 +4,9 @@ import { Container, Form, Avatar } from "./styles";
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../../hooks/auth";
+import { api } from "../../services/api";
+
+import avatarPlaceholder from "../../assets/usericon.png";
 
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
@@ -16,7 +19,11 @@ export function Profile() {
   const [passwordNew, setPasswordNew] = useState();
   const [passwordOld, setPasswordOld] = useState();
 
-  const [avatar, setAvatar] = useState(user.avatar);
+  const avatarURL = user.avatar
+    ? `${api.defaults.baseURL}/files/${user.avatar}`
+    : avatarPlaceholder;
+
+  const [avatar, setAvatar] = useState(avatarURL);
   const [avatarFile, setAvatarFile] = useState(null);
 
   async function handleUpdate() {
