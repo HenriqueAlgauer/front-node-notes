@@ -30,6 +30,9 @@ export function New() {
     setTags((prevState) => [...prevState, newTag]);
     setNewTag("");
   }
+  function handleRemoveTag(deleted) {
+    setTags((prevState) => prevState.filter((tag) => tag !== deleted));
+  }
 
   return (
     <Container>
@@ -72,7 +75,11 @@ export function New() {
                 onClick={handleAddTag}
               />
               {tags.map((tag, index) => (
-                <NoteItem key={String(index)} value={tag} onClick={() => {}} />
+                <NoteItem
+                  key={String(index)}
+                  value={tag}
+                  onClick={() => handleRemoveTag(tag)}
+                />
               ))}
             </div>
           </Section>
