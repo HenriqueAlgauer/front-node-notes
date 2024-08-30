@@ -46,7 +46,11 @@ export function New() {
               onClick={handleAddLink}
             />
             {links.map((link, index) => (
-              <NoteItem key={String(index)} value={link} onClick={() => {}} />
+              <NoteItem
+                key={String(index)}
+                value={link}
+                onClick={() => handleRemoveLink(link)}
+              />
             ))}
           </Section>
 
