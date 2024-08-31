@@ -41,7 +41,7 @@ export function SignUp() {
       <Background />
       <Form>
         <h1>Notes</h1>
-        <p>Aplicação para salvar e gerenciar sues links úteis</p>
+        <p>Aplicação para salvar e gerenciar seus links úteis</p>
 
         <h2>Crie sua conta</h2>
 
