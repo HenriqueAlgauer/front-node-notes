@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Container, Links, Content } from "./styles.js";
+
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Button } from "../../components/Button/index.jsx";
 import { Header } from "../../components/Header/index.jsx";
@@ -13,6 +15,19 @@ import { api } from "../../services/api.js";
 export function Details() {
   const [data, setData] = useState(null);
   const params = useParams();
+  const navigate = useNavigate();
+
+  function handleBack() {
+    navigate("/");
+  }
+
+  async function handleRemove() {
+    const confirm = window.confirm("Deseja realmente remover essa nota ?");
+    if (confirm) {
+      await api.delete(`/notes/${params.id}`);
+      handleBack();
+    }
+  }
 
   useEffect(() => {
     async function fetchNote() {
@@ -29,7 +44,7 @@ export function Details() {
       {data && (
         <main>
           <Content>
-            <ButtonText title="Excuir nota" />
+            <ButtonText title="Excuir nota" onClick={handleRemove} />
 
             <h1>{data.title}</h1>
             <p>{data.description}</p>
@@ -38,7 +53,9 @@ export function Details() {
                 <Links>
                   {data.links.map((link) => (
                     <li key={String(link.id)}>
-                      <a href={link.url}>{link.url}</a>
+                      <a target="_blank" href={link.url}>
+                        {link.url}
+                      </a>
                     </li>
                   ))}
                 </Links>
@@ -51,7 +68,7 @@ export function Details() {
                 ))}
               </Section>
             )}
-            <Button title="Voltar" />
+            <Button title="Voltar" onClick={handleBack} />
           </Content>
         </main>
       )}
