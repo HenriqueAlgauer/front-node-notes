@@ -1,5 +1,6 @@
 import axios from "axios";
+const apiUrl = import.meta.env.API;
 
 export const api = axios.create({
-  baseURL: "https://node-ten-rust.vercel.app/",
+  baseURL: apiUrl,
 });
